@@ -1,11 +1,11 @@
 {
-  "name": "practice",
+  "name": "schedule-campaign",
   "version": "1.0.0",
   "description": "A Task assign by BLUESTACK",
   "main": "app.js",
   "homepage": "https://aadil59.github.io/schedule-campaign",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "JSON",
