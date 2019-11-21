@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Task assign by BLUESTACK",
   "main": "app.js",
+  "homepage": "https://aadil59.github.io/schedule-campaign",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +25,7 @@
   "dependencies": {
     "D": "^1.0.0",
     "browser-sync": "^2.18.13",
+    "gh-pages": "^2.1.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
