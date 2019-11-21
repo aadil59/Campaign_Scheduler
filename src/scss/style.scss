@@ -1,0 +1,751 @@
+@import "partial/reset";
+@import "partial/mixins";
+@import "partial/variable";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600");
+@import url("https://use.fontawesome.com/releases/v5.7.2/css/all.css");
+
+// *------------------ MARGINS AND PADDINGS ------------------
+.m-0 {
+  margin: 0 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.ml-0 {
+  margin-left: 0 !important;
+}
+
+.p-0 {
+  padding: 0 0 !important;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: $margin-none !important;
+}
+
+// TYPOGRAPHY ===============================
+
+.text-blue {
+  color: #92A8D1 !important;
+}
+
+strong {
+  font: {
+    weight: $font-family-bold;
+  }
+}
+
+// h1, h2, h3, h4, h5, h6 {
+//   @extend strong;
+// }
+h1 {
+  font: {
+    size: $font-base-size + 22;
+  }
+}
+
+h2 {
+  font: {
+    size: $font-base-size + 14;
+  }
+}
+
+h3 {
+  font: {
+    size: $font-base-size + 10;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.heading-section {
+  text-align: center;
+  color: $blue;
+  margin-bottom: $margin-base-5 * 6;
+}
+
+// COMMON =============================
+body {
+  color: $body-color;
+
+  font: {
+    family: $font-family-base;
+    size: $font-base-size;
+  }
+
+  height: 100%;
+  line-height: 1.2;
+}
+
+.container-fuild {
+  width: 100%;
+  padding: $padding-none;
+}
+
+.container {
+  width: 1070px;
+  margin: 0 auto;
+  padding: $padding-none $padding-base-5 * 3;
+
+  @include tab-portrait {
+    width: 100%;
+  }
+}
+
+.sec-space {
+  padding: $padding-base-5 * 10 $padding-none;
+
+  @include tab-portrait {
+    padding: $padding-base-5 * 4 $padding-none;
+  }
+}
+
+/* -------------------- SCROLLBAR ------------------ */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+// IOCNS ===================================
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  &.icon-hamburger {
+    width: 36px;
+    height: 14px;
+    background-image: url("../images/icon-hamburger.png");
+  }
+
+  &.icon-chat {
+    width: 32px;
+    height: 32px;
+    background-image: url("../images/icon-chat.png");
+  }
+}
+
+// BUTTONS ================================
+.btn-wrapper {
+  text-align: center;
+
+  .btn {
+    margin: $margin-none $margin-base-5 * 2;
+  }
+}
+
+.btn {
+  @include border-radius(25px);
+  border: 0 none;
+  cursor: pointer;
+  min-width: 120px;
+  padding: 10px;
+  display: inline-block;
+  font-weight: 600;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  overflow: hidden;
+  outline: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+
+  &:hover {
+    border-color: transparent;
+    color: #fff;
+
+    &::before {
+      @include transform(scaleX(1));
+      -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+      -moz-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+      -ms-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+      -o-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+      transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    }
+  }
+}
+
+.btn-primary {
+  background: $blue;
+  color: $white;
+}
+
+// HEADER =================================
+.header {
+  background: $blue;
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  min-height: 60px;
+
+  .brand {
+    max-width: 180px;
+    padding-left: $padding-base-5 * 2;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .navigation-menu {
+    a {
+      color: $white;
+      display: inline-block;
+      vertical-align: middle;
+
+      font: {
+        size: $font-size-large + 6;
+      }
+    }
+  }
+}
+
+// HAMBURGER
+.hamburger {
+  background: $blue-dark;
+  cursor: pointer;
+  margin-left: $margin-base-5 * 2;
+  padding: ($padding-base-5 * 5 + 2) ($padding-base-5 * 4 + 2);
+  height: 60px;
+  width: 60px;
+  display: inline-block;
+  vertical-align: middle;
+
+  .bar {
+    position: $relative;
+    background: $white;
+    width: 25px;
+    height: 3px;
+    display: block;
+
+    &::before,
+    &::after {
+      @extend .bar;
+      content: "";
+      position: absolute;
+      top: -10px;
+    }
+
+    &::after {
+      top: auto;
+      bottom: -10px;
+    }
+  }
+}
+
+// TAB __________________________
+.nav-tab {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  margin-bottom: $margin-base-5 * 4;
+
+  @include mobile-width {
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  >li {
+    font: {
+      weight: $font-family-bold;
+    }
+
+    color: $white;
+    cursor: pointer;
+    background: $primary;
+    margin: $margin-none $margin-base-5;
+    text-transform: uppercase;
+    text-align: center;
+    padding: $padding-base-5+2 $padding-base-5 * 4;
+    min-width: 200px;
+    position: $relative;
+    border: 2px solid transparent;
+    @include transition(all 0.2s ease-in-out);
+
+    &:hover,
+    &:focus,
+    &.active {
+      background: transparent;
+      color: $primary;
+      border-color: $primary;
+    }
+
+    &.active {
+      pointer-events: none;
+
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid $primary;
+        position: absolute;
+        bottom: -7px;
+        left: 50%;
+      }
+    }
+
+    @include mobile-width {
+      display: inline-block;
+      min-width: 0;
+    }
+  }
+}
+
+// TABLE DATA
+
+.table {
+  border: 1px solid $border-color;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    padding: $padding-base-5 * 3;
+    background: $gray;
+    border: 1px solid #beb8b8;
+
+    @include tab-portrait {
+      padding: $padding-base-5 * 2;
+    }
+
+    @include mobile-width {
+      display: none;
+    }
+  }
+
+  tr {
+    @include mobile-width {
+      border: 1px solid $border-color;
+    }
+  }
+
+  td {
+    padding: $padding-base-5 * 3;
+    vertical-align: middle;
+    border: 1px solid #e5e5e5;
+
+    @include tab-portrait {
+      padding: $padding-base-5 * 2;
+    }
+
+    @include mobile-width {
+      display: block;
+      border: 0 none;
+      padding-left: 36%;
+      position: $relative;
+
+      &::before {
+        content: attr(data-attr);
+        text-transform: uppercase;
+        color: $body-color;
+        font-weight: $font-family-bold;
+        font-size: $font-base-size;
+        display: inline-block;
+        position: absolute;
+        left: 10px;
+        top: 20px;
+      }
+    }
+
+    &.cell-pricing {
+      cursor: pointer;
+      font-size: $font-size-small;
+      color: $blue;
+      text-align: center;
+      max-width: 80px;
+
+      @include mobile-width {
+        max-width: initial;
+        text-align: left;
+      }
+
+      .circel {
+        height: 30px;
+        width: 30px;
+        margin-bottom: $margin-base-5;
+        @include border-radius(50%);
+        display: inline-block;
+        color: $white;
+        padding: $padding-base-5;
+        font-size: $font-size-large;
+        text-align: center;
+
+        &.bg-blue {
+          background: $blue;
+        }
+
+        +p {
+          @include mobile-width {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.actions {
+  text-align: center;
+  position: $relative;
+
+  @include mobile-width {
+    text-align: left;
+  }
+
+  a {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: $font-size-small;
+    margin: $margin-none $margin-base-5 * 2;
+    line-height: 20px;
+
+    @include mobile-width {
+      max-width: 70px;
+      vertical-align: top;
+      margin-left: 0;
+      text-align: center;
+    }
+
+    .fas {
+      font-size: $font-size-large;
+    }
+  }
+}
+
+.cell-campaign {
+  @include flexbox;
+  @include justify-content(flex-start);
+  @include align-items(center);
+  min-width: 230px;
+  overflow: hidden;
+
+  @include tab-portrait {
+    min-width: 0;
+  }
+
+  .title {
+    color: $blue;
+
+    font: {
+      weight: $font-family-semi;
+      size: $font-base-size + 1;
+    }
+  }
+}
+
+.img-wrap {
+  height: 50px;
+  width: 50px;
+  border: 1px solid $border-color;
+  @include border-radius(50%);
+  padding: $padding-base-5;
+  margin-right: $margin-base-5 * 2;
+
+  @include mobile-width {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.schedule-wrapper {
+  position: fixed;
+  min-width: 400px;
+  bottom: 16%;
+  background: $white;
+  right: 0;
+  padding: $padding-base-5 * 4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  @include transform(translate(100%, 0));
+  @include transition(transform 0.3s ease-in-out);
+  z-index: 9;
+
+  &.open {
+    @include transform(translate(0, 0));
+  }
+  @include tab-portrait {
+    bottom: auto;
+    top: 10%;
+  }
+  @include mobile-width {
+    top: 60px;
+    bottom: auto;
+    min-width: 0;
+    width: 100%;
+  }
+
+  // display: none;
+
+  h3 {
+    font-weight: $font-family-bold;
+    color: $blue;
+    margin-bottom: $margin-base-5 * 6;
+  }
+}
+
+// FORM __________________________
+
+
+.form-group {
+  margin: 0 0 35px;
+  position: relative;
+
+  .form-control {
+    padding: $padding-base-5 * 3;
+    @include border-radius(0);
+    background: none;
+    position: relative;
+    z-index: 9;
+    height: auto;
+    border: 1px solid $border-color;
+    width: 100%;
+  }
+
+  .float-label {
+    color: #212121;
+    position: absolute;
+    top: 15px;
+    font-weight: 400;
+    left: 20px;
+    @include transition(all 0.3s ease-in-out);
+  }
+
+  .error {
+    display: none;
+    background: #fff0f1;
+    color: #f00;
+
+    font: {
+      size: 12px;
+    }
+
+    padding: $padding-base-5 $padding-base-5 * 4;
+    position: absolute;
+    right: 0;
+    top: -27px;
+  }
+
+  &.errorEmpty {
+    .error {
+      display: block;
+    }
+
+    .form-control {
+      border-color: #f00;
+      @include box-shadow(none);
+
+      &:focus {
+        border-color: #f00;
+        @include box-shadow(none);
+      }
+    }
+
+    .float-label {
+      color: #f00;
+    }
+  }
+}
+
+.form-group .form-control.disabled:focus {
+  border-color: transparent;
+}
+
+.form-group .form-control:focus {
+  border-color: $blue;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.form-group .form-control:focus+.float-label {
+  color: #414141;
+  @include transform(translate(-20px, -40px));
+}
+
+.form-group .float-label-up+.float-label {
+  color: #414141;
+  @include transform(translate(-20px, -40px));
+}
+
+.ui-datepicker {
+  background: $white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  thead {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    th {
+      text-transform: uppercase;
+      font-size: $font-size-small;
+    }
+  }
+
+  td {
+    a {
+      color: inherit;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      padding: 9px;
+      @include border-radius(50%);
+
+      &:hover {
+        background: $blue;
+        color: $white;
+
+      }
+    }
+
+    &.ui-datepicker-today {
+      a {
+        background: $blue;
+        color: $white;
+      }
+    }
+  }
+
+  .ui-datepicker-prev,
+  .ui-datepicker-next {
+    span {
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid $blue;
+      @include transform(rotate(90deg));
+      margin: -3px;
+    }
+  }
+
+  .ui-datepicker-next {
+    span {
+      @include transform(rotate(-90deg));
+    }
+  }
+}
+
+// CUSTOM MODAL
+
+
+.close {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background: $blue;
+  color: $white;
+}
+.modal-header {
+  h3 {
+    margin-bottom: $margin-base-5 * 3;
+    font-weight: $font-family-bold;
+    span {
+      color: $blue;
+    }
+  }
+}
+
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    width: 50%;
+    @include transform(translate(-50%, -50%));
+    background: #f2f2f2;
+    @include tab-portrait {
+      width: 80%;
+    }@include mobile-width {
+      width: 100%;
+    }
+    h4 {
+      font-size: $font-size-large;
+      margin-bottom: $margin-base-5 * 2;
+    }
+  }
+}
+
+.close {
+  display: block;
+  &:hover {
+    cursor: pointer;
+  }
+}
