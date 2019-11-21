@@ -88,7 +88,7 @@ $(document).ready(function () {
     });
 });
 // ======================= JSON RESPONCE TO LOAD DATA BY FETCH
-const jsonURL = "../assets/js/db.json";
+const jsonURL = "https://aadil59.github.io/db.json";
 const getData = paramFilter => {
     $("tbody").html("");
     fetch(jsonURL)
